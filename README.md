@@ -29,9 +29,14 @@ Este projeto é uma aplicação **web fullstack** que permite consultar, cadastr
 ### 🔧 Backend (Node.js + Express)
 
 - API RESTful com autenticação JWT
-- Banco de dados relacional (SQLite com Sequelize)
+- Banco de dados (SQLite com Sequelize)
 - Rotas protegidas para criar, listar, editar e excluir feriados personalizados
 - Integração com API pública externa para feriados
+- Validação e sanitização de dados
+- HTTPS com certificado local
+- Cache de requisições externas
+- Limitação de requisições por IP
+- Pool de conexões no banco
 
 ---
 
@@ -58,13 +63,21 @@ touch .env
 JWT_SECRET=sua_chave_secreta
 ```
 
+**Gere os certificados HTTPS:**
+
+```
+mkdir certs
+openssl req -nodes -new -x509 -keyout certs/key.pem -out certs/cert.pem
+```
+
+
 **Inicialize o servidor:**
 
 ```bash
 npm start
 ```
 
-O servidor será iniciado em `http://localhost:3001`.
+O servidor será iniciado em `https://localhost:3001`.
 
 ---
 
@@ -99,18 +112,34 @@ Ao iniciar o servidor, um usuário `admin` e `user2` com senha `123` será criad
   - Day.js
 
 - **Backend:**
+  - Node.js
   - Express.js
   - Sequelize ORM
   - SQLite
   - JWT (Autenticação)
   - Bcrypt
+  - dotenv
+  - express-validator
+  - express-rate-limit
+  - apicache
+  - helmet
+  - compression
 
 ---
 
 ## 🛡️ Segurança
 
-- Rotas de feriados personalizados são protegidas por JWT.
-- Cada usuário só visualiza seus próprios feriados cadastrados.
+-Hash de senha com bcrypt
+-Autenticação com JWT
+-HTTPS local com certificados próprios
+-Middleware de proteção de rotas
+-Separação de dados por usuário
+-Validação e sanitização de dados
+-Rate limiting contra brute force
+-Cache de respostas externas (feriados)
+-Pool de conexões com SQLite
+-Compressão com compression
+-Headers seguros com helmet
 
 ---
 
@@ -118,5 +147,5 @@ Ao iniciar o servidor, um usuário `admin` e `user2` com senha `123` será criad
 
 - A aplicação segue o padrão **SPA** (Single Page Application), sem mudanças de rota.
 - A API externa utilizada é a [Nager.Date](https://date.nager.at/).
-
+- Projeto desenvolvido para fins acadêmicos.
 ---
