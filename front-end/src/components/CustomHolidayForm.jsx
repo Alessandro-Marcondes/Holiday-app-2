@@ -46,7 +46,7 @@ export default function CustomHolidayForm({ onAdd, onEdit, existingHoliday, onCl
 
       if (existingHoliday) {
         // Editar feriado
-        response = await fetch(`http://localhost:3001/holidays/${existingHoliday.id}`, {
+        response = await fetch(`https://localhost:3001/holidays/${existingHoliday.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export default function CustomHolidayForm({ onAdd, onEdit, existingHoliday, onCl
         if (onEdit) onEdit(data);
       } else {
         // Criar feriado
-        response = await fetch("http://localhost:3001/holidays", {
+        response = await fetch("https://localhost:3001/holidays", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

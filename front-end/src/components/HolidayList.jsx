@@ -30,7 +30,7 @@ export default function HolidayList() {
         dispatch({ type: "FETCH_START" });
         try {
           const token = localStorage.getItem("token");
-          const res = await fetch("http://localhost:3001/holidays", {
+          const res = await fetch("https://localhost:3001/holidays", {
             headers: {
               "Authorization": `Bearer ${token}`,
             },

@@ -23,7 +23,7 @@ export default function CustomHolidayTable({ onClose }) {
   useEffect(() => {
     const fetchHolidays = async () => {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3001/holidays", {
+      const res = await fetch("https://localhost:3001/holidays", {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -36,7 +36,7 @@ export default function CustomHolidayTable({ onClose }) {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3001/holidays/${id}`, {
+      const res = await fetch(`https://localhost:3001/holidays/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
